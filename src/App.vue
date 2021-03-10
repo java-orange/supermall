@@ -2,7 +2,9 @@
   <div id="app">
 
     <router-view/>
+
     <main-tab-bar/>
+
 
   </div>
 </template>
@@ -12,12 +14,13 @@
   export default {
     name: 'App',
     components: {
-      MainTabBar
+      MainTabBar,
     }
   }
 </script>
 <style>
 
-
+  @import "assets/css/base.css";
+  @import "assets/css/normalize.css";
 
 </style>
