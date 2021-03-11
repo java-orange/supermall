@@ -11,6 +11,7 @@
 
     <tap-control class="tap-control" :title="['流行','新款','精选']"/>
 
+    <goods-list :goods="goods['pop'].list"/>
 
     <ul>
       <li>list1</li>
@@ -124,9 +125,10 @@
   import HomeSwiper from "./childComps/HomeSwiper";
   import HomeRecommendView from "./childComps/HomeRecommendView";
   import HomeFeatureView from "./childComps/HomeFeatureView";
-  import TapControl from "components/common/tapcontrol/TapControl";
+  import TapControl from "components/content/tapcontrol/TapControl";
+  import GoodsList from "components/content/goods/GoodsList";
 
-  import {getHomeMultidata} from "network/home";
+  import {getHomeMultidata, getHomeData} from "network/home";
 
   export default {
     name: "Home",
@@ -136,20 +138,42 @@
       HomeRecommendView,
       HomeFeatureView,
       TapControl,
+      GoodsList
     },
     data() {
       return{
         banner: [],
-        recommend: []
+        recommend: [],
+        goods: {
+          'pop': {page: 0, list: []},
+          'new': {page: 0, list: []},
+          'sell': {page: 0, list: []}
+        }
       }
     },
     created() {
-      getHomeMultidata({
-        url: '/home/multidata'
-      }).then(res => {
-        this.banner = res.data.banner.list;
-        this.recommend = res.data.recommend.list
-      })
+      this.getHomeMultidata()
+      this.getHomedata('pop');
+      this.getHomedata('new');
+      this.getHomedata('sell');
+
+    },
+    methods: {
+      getHomeMultidata() {
+        getHomeMultidata().then(res => {
+          this.banner = res.data.banner.list;
+          this.recommend = res.data.recommend.list;
+        })
+      },
+      getHomedata(type) {
+        const page = this.goods[type].page + 1;
+        getHomeData(type, page).then(res => {
+          this.goods[type].list.push(...res.list)
+          this.goods[type].page += 1;
+        })
+      }
+
+
     }
   }
 </script>

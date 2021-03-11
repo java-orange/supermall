@@ -46,6 +46,7 @@
     /*粘性定位*/
     position: sticky;
     top: 44px;
+    z-index: 9;
   }
 
   .tap-control-item {
