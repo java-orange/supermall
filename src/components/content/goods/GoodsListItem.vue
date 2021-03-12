@@ -1,12 +1,14 @@
 <template>
-  <div class="goods-item">
-    <img :src="goodsItem.showLarge.img" alt="">
-    <div>
-      <p>{{goodsItem.title}}</p>
-    </div>
-    <span>{{goodsItem.price}}</span>
-    <span>⭐{{goodsItem.cfav}}</span>
+  <div class="goods-item" @click="itemClick">
+<!--    <a :href="goodsItem.clientUrl">-->
 
+      <img :src="goodsItem.showLarge.img" alt="" @load="imgLoad">
+      <div>
+        <p>{{goodsItem.title}}</p>
+      </div>
+      <span>{{goodsItem.price}}</span>
+      <span>⭐{{goodsItem.cfav}}</span>
+<!--    </a>-->
   </div>
 </template>
 
@@ -19,6 +21,15 @@
         default() {
           return []
         }
+      }
+    },
+    methods: {
+      imgLoad() {
+        this.$bus.$emit('itemImgLoad');
+      },
+      itemClick() {
+        this.$router.push('/detail/' + this.goodsItem.iid).catch(err => {})
+
       }
     }
   }
