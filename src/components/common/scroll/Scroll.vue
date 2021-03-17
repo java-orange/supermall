@@ -14,7 +14,6 @@
     data() {
       return {
         scroll: null,
-        message: '哈哈'
       }
     },
     props: {
@@ -24,11 +23,11 @@
       },
       pullUpLoad: {
         type: Boolean,
-        default: true
+        default: false
       }
     },
     methods: {
-      scrollTo(x, y, time) {
+      scrollTo(x, y, time=300) {
         this.scroll && this.scroll.scrollTo(x,y,time);
       },
       finishPullUp() {

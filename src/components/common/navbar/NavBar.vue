@@ -7,7 +7,7 @@
       <slot name="center"></slot>
     </div>
     <div class="right">
-      <slot name="rigth"></slot>
+      <slot name="right"></slot>
     </div>
   </div>
 </template>

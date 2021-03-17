@@ -1,8 +1,8 @@
 <template>
   <div class="detail">
     <nav-bar>
-      <div slot="left">
-        <img src="~assets/img/common/back.svg" alt="" class="back" @click="backClick">
+      <div slot="left" @click="backClick">
+        <img src="~assets/img/common/back.svg" alt="" class="back" >
       </div>
       <div slot="center" class="title">
         <div v-for="(item, index) in titles" class="title-item"

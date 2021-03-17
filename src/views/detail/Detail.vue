@@ -6,7 +6,6 @@
 
 
 
-
   </div>
 </template>
 
@@ -26,7 +25,6 @@
     },
     created() {
       this.iid = this.$route.params.iid
-
     }
   }
 </script>

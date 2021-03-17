@@ -13,6 +13,7 @@
             @scroll="contentScroll"
             :pull-up-load="true"
             @pullingUp="loadMore">
+<!--      轮播图-->
       <home-swiper :banner="banners" @swiperImgLoad="swiperImgLoad"/>
       <recommend-view :recommend="recommends"/>
       <feature-view/>
@@ -75,7 +76,6 @@
     created() {
       // 1.请求多个数据
       this.getHomeMultidata()
-
       // 2.请求商品数据
       this.getHomeGoods('pop')
       this.getHomeGoods('new')
@@ -106,7 +106,9 @@
     },
     methods: {
       /**
+       *
        * 事件监听相关的方法
+       *
        */
       swiperImgLoad() {
         this.taboffsetTop = this.$refs.tabControl2.$el.offsetTop
@@ -127,21 +129,22 @@
         this.$refs.tabControl2.currentIndex = index;
       },
       backClick() {
-        this.$refs.scroll.scrollTo(0, 0, 500)
+        this.$refs.scroll.scrollTo(0, 0)
       },
       contentScroll(position) {
         // 返回页顶
         this.isShowBackTop = (-position.y) > 1000
 
         this.isFixed = (-position.y) > this.taboffsetTop;
-
       },
 
       loadMore() {
         this.getHomeGoods(this.currentType)
       },
       /**
+       *
        * 网络请求相关的方法
+       *
        */
       getHomeMultidata() {
         getHomeMultidata().then(res => {
@@ -177,12 +180,6 @@
     left: 0;
     right: 0;
     top: 0;
-    z-index: 9;
-  }
-
-  .tab-control {
-    position: sticky;
-    top: 44px;
     z-index: 9;
   }
 

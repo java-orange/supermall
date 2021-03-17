@@ -1,7 +1,6 @@
 <template>
   <div class="goods-item" @click="itemClick">
 <!--    <a :href="goodsItem.clientUrl">-->
-
       <img :src="goodsItem.showLarge.img" alt="" @load="imgLoad">
       <div>
         <p>{{goodsItem.title}}</p>
@@ -29,7 +28,6 @@
       },
       itemClick() {
         this.$router.push('/detail/' + this.goodsItem.iid).catch(err => {})
-
       }
     }
   }
@@ -80,7 +78,7 @@
     top: -1px;
     width: 14px;
     height: 14px;
-    background: url("~assets/img/common/collect.svg") 0 0/14px 14px;
+    /*background: url("~assets/img/common/collect.svg") 0 0/14px 14px;*/
   }
 
 

@@ -10,11 +10,13 @@ export function request(config) {
   })
 
   // 2. 拦截
+  // 请求拦截, 方便预先处理
   instance.interceptors.request.use(config => {
     return config
   }), err => {
     console.log(err);
   }
+  // 响应数据预先处理拦截
   instance.interceptors.response.use(res => {
     return res.data
   }), err => {
